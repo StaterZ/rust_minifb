@@ -1038,6 +1038,7 @@ impl Window {
                 let screen_y = unsafe { winuser::GetSystemMetrics(winuser::SM_CYSCREEN) } as i32;
 
                 let mut scale = 1i32;
+
                 loop {
                     let next_scale = scale + 1;
                     let w = width as i32 * next_scale;
@@ -1049,6 +1050,7 @@ impl Window {
 
                     scale = next_scale;
                 }
+
                 std::cmp::max(1, scale - 1) //reduce slightly so we don't go over the taskbar
             }
         };

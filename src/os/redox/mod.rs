@@ -41,19 +41,21 @@ impl Window {
             Scale::FitScreen => {
                 let display_size = orbclient::get_display_size()
                     .map_err(|_| Error::WindowCreate("Unable to get display size".to_owned()))?;
-                
-                let mut scale = 1i32;
+
+                let mut scale = 1usize;
+
                 loop {
                     let next_scale = scale + 1;
-                    let w = width as i32 * next_scale;
-                    let h = height as i32 * next_scale;
+                    let w = width * next_scale;
+                    let h = height * next_scale;
 
-                    if w > display_size.0 || h > display_size.1 {
+                    if w > display_size.0 as usize || h > display_size.1 as usize {
                         break;
                     }
 
                     scale = next_scale;
                 }
+
                 scale
             }
         };

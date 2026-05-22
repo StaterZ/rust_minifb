@@ -599,6 +599,7 @@ impl Window {
                 let screen_y = (wh & 0xffff) as i32;
 
                 let mut scale = 1i32;
+
                 loop {
                     let next_scale = scale + 1;
                     let w = width as i32 * next_scale;
@@ -610,6 +611,7 @@ impl Window {
 
                     scale = next_scale;
                 }
+
                 scale
             }
         };
